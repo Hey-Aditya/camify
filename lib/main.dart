@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'home_page.dart';
 
 void main() {
@@ -14,9 +15,17 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        // fontFamily: 'Domine',
+        fontFamily: GoogleFonts.playfairDisplay().fontFamily,
         colorScheme: ColorScheme.fromSeed(
           seedColor: Color.fromARGB(255, 243, 151, 65),
+          primary: Color.fromARGB(255, 243, 151, 65),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          hintStyle: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w800,
+          ),
+          prefixIconColor: Color.fromRGBO(127, 127, 127, 1),
         ),
       ),
       title: "Shopping App",
