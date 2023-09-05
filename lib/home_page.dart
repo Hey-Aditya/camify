@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
 import "package:shop_app/global_variables.dart";
 import "package:shop_app/product_card.dart";
+import "package:shop_app/product_details_page.dart";
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -144,23 +145,40 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
             ),
+            // const Stack(
+            //   children: [
+            //     Text("delusional"),
+            //     Text("daydreaming"),
+            //   ],
+            // ),
             Expanded(
               child: ListView.builder(
                 itemCount: products.length,
                 itemBuilder: (context, index) {
                   final product = products[index];
-                  return ProductCard(
-                    // title: "chal hatt.",
-                    // price: 48.95,
-                    // image: product['imageUrl'] as String,
-                    // backgroundColor: Colors.cyan.shade200,
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return ProductDetailsPage(product: product);
+                          },
+                        ),
+                      );
+                    },
+                    child: ProductCard(
+                      // title: "chal hatt.",
+                      // price: 48.95,
+                      // image: product['imageUrl'] as String,
+                      // backgroundColor: Colors.cyan.shade200,
 
-                    title: product['title'] as String,
-                    price: product['price'] as double,
-                    image: product['imageUrl'] as String,
-                    backgroundColor: index.isEven
-                        ? Colors.indigo.shade200
-                        : Colors.grey.shade300,
+                      title: product['title'] as String,
+                      price: product['price'] as double,
+                      image: product['imageUrl'] as String,
+                      backgroundColor: index.isEven
+                          ? Colors.indigo.shade200
+                          : Colors.grey.shade300,
+                    ),
                   );
                 },
               ),

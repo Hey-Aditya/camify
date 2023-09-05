@@ -1,22 +1,29 @@
 import 'package:flutter/material.dart';
 
-class ProductDetailsPage extends StatelessWidget {
+class ProductDetailsPage extends StatefulWidget {
   final Map<String, Object> product;
   const ProductDetailsPage({super.key, required this.product});
+
+  @override
+  State<ProductDetailsPage> createState() => _ProductDetailsPageState();
+}
+
+class _ProductDetailsPageState extends State<ProductDetailsPage> {
+  double selectedSize = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Details"),
-        leading: const Icon(Icons.arrow_back_rounded),
+        // leading: const Icon(Icons.arrow_back_rounded),
       ),
       body: Column(
         children: [
           const SizedBox(height: 10),
           Center(
             child: Text(
-              product['title'] as String,
+              widget.product['title'] as String,
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
@@ -26,7 +33,7 @@ class ProductDetailsPage extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(24),
               child: Image.asset(
-                product['imageUrl'] as String,
+                widget.product['imageUrl'] as String,
                 scale: 2,
               ),
             ),
@@ -48,7 +55,7 @@ class ProductDetailsPage extends StatelessWidget {
               children: [
                 const SizedBox(height: 10),
                 Text(
-                  "\$${product['price']}",
+                  "\$${widget.product['price']}",
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(height: 10),
@@ -56,15 +63,26 @@ class ProductDetailsPage extends StatelessWidget {
                   height: 50,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: (product['model'] as List<double>).length,
+                    itemCount: (widget.product['model'] as List<double>).length,
                     itemBuilder: (context, index) {
-                      final size = (product['model'] as List<double>)[index];
+                      final size =
+                          (widget.product['model'] as List<double>)[index];
 
                       return Padding(
                         padding: const EdgeInsets.all(5.0),
-                        child: Chip(
-                          label: Text(
-                            size.toString(),
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedSize = size;
+                            });
+                          },
+                          child: Chip(
+                            label: Text(
+                              size.toString(),
+                            ),
+                            backgroundColor: selectedSize == size
+                                ? Theme.of(context).colorScheme.primary
+                                : null,
                           ),
                         ),
                       );
@@ -74,22 +92,43 @@ class ProductDetailsPage extends StatelessWidget {
                 // const SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: ElevatedButton(
+                  // child: ElevatedButton(
+                  //   onPressed: () {
+                  //     debugPrint("nahi karunga");
+                  //   },
+                  //   style: ElevatedButton.styleFrom(
+                  //     minimumSize: const Size(double.infinity, 50),
+                  //     backgroundColor: Theme.of(context).colorScheme.primary,
+                  //   ),
+                  //   child:
+                  //       // Icon(Icons.shopping_cart),
+                  //     const Text(
+                  //     "Add to Cart",
+                  //     style: TextStyle(
+                  //       fontSize: 16,
+                  //       color: Colors.black,
+                  //     ),
+                  //   ),
+                  // ),
+
+                  child: ElevatedButton.icon(
                     onPressed: () {
                       debugPrint("nahi karunga");
                     },
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(double.infinity, 50),
-                      backgroundColor: Theme.of(context).colorScheme.primary,
+                    icon: const Icon(
+                      Icons.shopping_cart_outlined,
+                      color: Colors.black,
                     ),
-                    child:
-                        // Icon(Icons.shopping_cart),
-                        const Text(
+                    label: const Text(
                       "Add to Cart",
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.black,
                       ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size(double.infinity, 50),
+                      backgroundColor: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                 ),
