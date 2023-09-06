@@ -20,10 +20,12 @@ class MyApp extends StatelessWidget {
         // fontFamily: GoogleFonts.playfairDisplay().fontFamily,
         // fontFamily: "Domine",
         fontFamily: GoogleFonts.dmSerifDisplay().fontFamily,
+
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color.fromARGB(255, 243, 151, 65),
           primary: const Color.fromARGB(255, 243, 151, 65),
         ),
+
         appBarTheme: AppBarTheme(
           titleTextStyle: TextStyle(
             fontSize: 20,
@@ -33,6 +35,7 @@ class MyApp extends StatelessWidget {
           ),
           centerTitle: true,
         ),
+
         inputDecorationTheme: const InputDecorationTheme(
           hintStyle: TextStyle(
             fontSize: 16,
@@ -40,6 +43,7 @@ class MyApp extends StatelessWidget {
           ),
           prefixIconColor: Color.fromRGBO(127, 127, 127, 1),
         ),
+
         textTheme: const TextTheme(
           titleLarge: TextStyle(
             fontSize: 32,
