@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop_app/cart_provider.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   final Map<String, Object> product;
@@ -10,6 +12,39 @@ class ProductDetailsPage extends StatefulWidget {
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
   double selectedSize = 0;
+
+  void onTap() {
+    if (selectedSize != 0) {
+      Provider.of<CartProvider>(context, listen: false).addProduct(
+        {
+          'id': widget.product['id'],
+          'company': widget.product['company'],
+          'title': widget.product['title'],
+          'price': widget.product['price'],
+          'model': selectedSize,
+          'imageUrl': widget.product['imageUrl'],
+        },
+      );
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            "Product added to cart!",
+          ),
+          duration: Duration(seconds: 1, milliseconds: 500),
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            "Please select a camera model!",
+          ),
+          duration: Duration(seconds: 1, milliseconds: 500),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -112,9 +147,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   // ),
 
                   child: ElevatedButton.icon(
-                    onPressed: () {
-                      debugPrint("nahi karunga");
-                    },
+                    onPressed: onTap,
                     icon: const Icon(
                       Icons.shopping_cart_outlined,
                       color: Colors.black,

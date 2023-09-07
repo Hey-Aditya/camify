@@ -32,14 +32,3 @@ final products = [
     'imageUrl': 'assets/images/pentax.jpg',
   },
 ];
-
-final cart = [
-  {
-    'id': "2",
-    'company': "Kodak",
-    'title': "Kodak's Delusive",
-    'price': 49.89,
-    'model': 7.0,
-    'imageUrl': 'assets/images/kodak.jpg',
-  },
-];
