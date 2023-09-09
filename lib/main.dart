@@ -27,6 +27,9 @@ class MyApp extends StatelessWidget {
           // fontFamily: GoogleFonts.playfairDisplay().fontFamily,
           // fontFamily: "Domine",
           fontFamily: GoogleFonts.dmSerifDisplay().fontFamily,
+          // fontFamily: "SF Pro",
+          // fontFamily: 'Coolvetica',
+          // fontFamily: GoogleFonts.inter().fontFamily,
 
           colorScheme: ColorScheme.fromSeed(
             seedColor: const Color.fromARGB(255, 243, 151, 65),

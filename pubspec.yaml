@@ -85,6 +85,28 @@ flutter:
         - asset: assets/fonts/Domine-SemiBold.ttf
         - asset: assets/fonts/Domine-Bold.ttf
           weight: 700
+    
+    - family: SF Pro
+      fonts:
+        # - asset: assets/fonts/SFPro/SF-Pro-Text-Black.otf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Bold.otf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Heavy.otf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Light.otf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Medium.otf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Regular.otf
+        - asset: assets/fonts/SFPro/SF-Pro-Text-Semibold.otf
+        # - asset: assets/fonts/SFPro/SF-Pro-Text-Thin.otf
+        # - asset: assets/fonts/SFPro/SF-Pro-Text-Ultralight.otf
+          weight: 700
+
+    - family: Coolvetica
+      fonts:
+        - asset: assets/fonts/Coolvetica/coolvetica-compressed-hv.otf
+        - asset: assets/fonts/Coolvetica/coolvetica-condensed-rg.otf
+        - asset: assets/fonts/Coolvetica/coolvetica-crammed-rg.otf
+        - asset: assets/fonts/Coolvetica/coolvetica-rg.otf
+        - asset: assets/fonts/Coolvetica/coolvetica-rg-it.otf
+
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
