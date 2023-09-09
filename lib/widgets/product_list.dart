@@ -29,7 +29,8 @@ class _ProductListState extends State<ProductList> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    // final size = MediaQuery.of(context).size;
+    final size = MediaQuery.sizeOf(context);
     const border = OutlineInputBorder(
       borderSide: BorderSide(
         color: Color.fromRGBO(225, 225, 225, 1),
@@ -159,43 +160,23 @@ class _ProductListState extends State<ProductList> {
           // ),
 
           Expanded(
-            child: size.width > 650
-                ? GridView.builder(
-                    itemCount: products.length,
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                // print(constraints.maxHeight);
+                // print(constraints.maxWidth);
+                // print(constraints.minHeight);
+                // print(constraints.minWidth);
+                // return Text("Flutter Dev");
+
+                print(constraints.maxHeight);
+                print(constraints.maxWidth);
+                if (constraints.maxWidth > 1080) {
+                  return GridView.builder(                    
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: 1.5,
                     ),
-                    itemBuilder: (context, index) {
-                      final product = products[index];
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return ProductDetailsPage(product: product);
-                              },
-                            ),
-                          );
-                        },
-                        child: ProductCard(
-                          // title: "chal hatt.",
-                          // price: 48.95,
-                          // image: product['imageUrl'] as String,
-                          // backgroundColor: Colors.cyan.shade200,
-
-                          title: product['title'] as String,
-                          price: product['price'] as double,
-                          image: product['imageUrl'] as String,
-                          backgroundColor: index.isEven
-                              ? Colors.indigo.shade200
-                              : Colors.grey.shade300,
-                        ),
-                      );
-                    },
-                  )
-                : ListView.builder(
                     itemCount: products.length,
                     itemBuilder: (context, index) {
                       final product = products[index];
@@ -224,8 +205,109 @@ class _ProductListState extends State<ProductList> {
                         ),
                       );
                     },
-                  ),
+                  );
+                } else {
+                  return ListView.builder(
+                    itemCount: products.length,
+                    itemBuilder: (context, index) {
+                      final product = products[index];
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return ProductDetailsPage(product: product);
+                              },
+                            ),
+                          );
+                        },
+                        child: ProductCard(
+                          // title: "chal hatt.",
+                          // price: 48.95,
+                          // image: product['imageUrl'] as String,
+                          // backgroundColor: Colors.cyan.shade200,
+
+                          title: product['title'] as String,
+                          price: product['price'] as double,
+                          image: product['imageUrl'] as String,
+                          backgroundColor: index.isEven
+                              ? Colors.indigo.shade200
+                              : Colors.grey.shade300,
+                        ),
+                      );
+                    },
+                  );
+                }
+              },
+            ),
           ),
+
+          // Expanded(
+          //     child: GridView.builder(
+          //   itemCount: products.length,
+          //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          //     crossAxisCount: 2,
+          //     childAspectRatio: 1.5,
+          //   ),
+          //   itemBuilder: (context, index) {
+          //     final product = products[index];
+          //     return GestureDetector(
+          //       onTap: () {
+          //         Navigator.of(context).push(
+          //           MaterialPageRoute(
+          //             builder: (context) {
+          //               return ProductDetailsPage(product: product);
+          //             },
+          //           ),
+          //         );
+          //       },
+          //       child: ProductCard(
+          //         // title: "chal hatt.",
+          //         // price: 48.95,
+          //         // image: product['imageUrl'] as String,
+          //         // backgroundColor: Colors.cyan.shade200,
+
+          //         title: product['title'] as String,
+          //         price: product['price'] as double,
+          //         image: product['imageUrl'] as String,
+          //         backgroundColor: index.isEven
+          //             ? Colors.indigo.shade200
+          //             : Colors.grey.shade300,
+          //       ),
+          //     );
+          //   },
+          // )
+          // ListView.builder(
+          //     itemCount: products.length,
+          //     itemBuilder: (context, index) {
+          //       final product = products[index];
+          //       return GestureDetector(
+          //         onTap: () {
+          //           Navigator.of(context).push(
+          //             MaterialPageRoute(
+          //               builder: (context) {
+          //                 return ProductDetailsPage(product: product);
+          //               },
+          //             ),
+          //           );
+          //         },
+          //         child: ProductCard(
+          //           // title: "chal hatt.",
+          //           // price: 48.95,
+          //           // image: product['imageUrl'] as String,
+          //           // backgroundColor: Colors.cyan.shade200,
+
+          //           title: product['title'] as String,
+          //           price: product['price'] as double,
+          //           image: product['imageUrl'] as String,
+          //           backgroundColor: index.isEven
+          //               ? Colors.indigo.shade200
+          //               : Colors.grey.shade300,
+          //         ),
+          //       );
+          //     },
+          //   ),
+          // ),
         ],
       ),
     );
