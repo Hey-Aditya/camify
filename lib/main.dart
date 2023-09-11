@@ -5,6 +5,7 @@ import 'package:shop_app/providers/cart_provider.dart';
 import 'package:shop_app/global_variables.dart';
 import 'package:shop_app/pages/product_details_page.dart';
 import 'pages/home_page.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -71,7 +72,11 @@ class MyApp extends StatelessWidget {
           ),
         ),
         title: "Shopping App",
-        home: const HomePage(),
+        home: AnimatedSplashScreen(
+          splash: Icons.flutter_dash,
+          nextScreen: const HomePage(),
+          splashTransition: SplashTransition.fadeTransition,
+        ),
       ),
     );
   }
