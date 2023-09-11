@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -6,6 +7,7 @@ import 'package:shop_app/global_variables.dart';
 import 'package:shop_app/pages/product_details_page.dart';
 import 'pages/home_page.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:page_transition/page_transition.dart';
 
 void main() {
   runApp(const MyApp());
@@ -73,9 +75,19 @@ class MyApp extends StatelessWidget {
         ),
         title: "Shopping App",
         home: AnimatedSplashScreen(
-          splash: Icons.flutter_dash,
+          splash: Icon(
+            Icons.flutter_dash,
+            color: Colors.indigo.shade200,
+            size: 150,
+          ),
+          backgroundColor: Colors.indigo.shade600,
           nextScreen: const HomePage(),
-          splashTransition: SplashTransition.fadeTransition,
+          splashTransition: SplashTransition.scaleTransition,
+          
+          //! this is not working fix this.
+          pageTransitionType: PageTransitionType.bottomToTopPop,
+          duration: 500,
+          animationDuration: const Duration(seconds: 2),
         ),
       ),
     );
