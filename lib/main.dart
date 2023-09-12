@@ -1,10 +1,10 @@
-import 'package:flutter/gestures.dart';
+// import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/providers/cart_provider.dart';
-import 'package:shop_app/global_variables.dart';
-import 'package:shop_app/pages/product_details_page.dart';
+// import 'package:shop_app/global_variables.dart';
+// import 'package:shop_app/pages/product_details_page.dart';
 import 'pages/home_page.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
